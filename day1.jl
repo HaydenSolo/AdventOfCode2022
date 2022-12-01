@@ -14,7 +14,11 @@ end
 
 getcal(x::Elf) = x.calories
 
-highest = maximum(getcal.(elves))
+highest = maximum(sort(getcal.(elves)))
+println(highest)
+
+highest = sum(sort(getcal.(elves))[end-2:end])
+println(highest)
 
 close(f)
 
