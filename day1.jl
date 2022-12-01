@@ -11,7 +11,7 @@ elves = Elf[Elf()]
 
 foreach(line -> (line == "" ? push!(elves, Elf()) : (elves[end].calories += parseint(line))), lines)
 
-highest = maximum(sort(getcal.(elves)))
+highest = maximum(getcal.(elves))
 println(highest)
 
 highest = sum(sort(getcal.(elves))[end-2:end])
