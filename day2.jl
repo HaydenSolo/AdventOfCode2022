@@ -1,3 +1,5 @@
+include("utils.jl")
+
 f = open("input.txt", "r")
 lines = readlines(f)
 

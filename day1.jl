@@ -1,3 +1,5 @@
+include("utils.jl")
+
 mutable struct Elf
     calories::Int64
 end
@@ -8,7 +10,7 @@ f = open("input.txt", "r")
 lines = readlines(f)
 elves = Elf[Elf()]
 
-foreach(line -> (line == "" ? push!(elves, Elf()) : (elves[end].calories += parse(Int64, line))), lines)
+foreach(line -> (line == "" ? push!(elves, Elf()) : (elves[end].calories += parseint(line))), lines)
 
 highest = maximum(sort(getcal.(elves)))
 println(highest)
