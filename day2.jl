@@ -1,10 +1,7 @@
 include("utils.jl")
 
-f = open("input.txt", "r")
-lines = readlines(f)
+lines = readinput(true)
 
 potentiallist = Type[]
 
 foreach(line -> (), lines)
-
-close(f)
