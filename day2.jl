@@ -32,20 +32,20 @@ get_move(::Scissors, ::Lose) = Paper()
 get_move(::Scissors, ::Draw) = Scissors()
 
 
-getme(x::Rock) = 1
-getme(x::Paper) = 2
-getme(x::Scissors) = 3
+getme(::Rock) = 1
+getme(::Paper) = 2
+getme(::Scissors) = 3
 
-score(x::Rock, y::Rock) = 3
-score(x::Paper, y::Paper) = 3
-score(x::Scissors, y::Scissors) = 3
+score(::Rock, ::Rock) = 3
+score(::Paper, ::Paper) = 3
+score(::Scissors, ::Scissors) = 3
 
-score(x::Rock, y::Paper) = 6
-score(x::Rock, y::Scissors) = 0
-score(x::Paper, y::Rock) = 0
-score(x::Paper, y::Scissors) = 6
-score(x::Scissors, y::Paper) = 0
-score(x::Scissors, y::Rock) = 6
+score(::Rock, ::Paper) = 6
+score(::Rock, ::Scissors) = 0
+score(::Paper, ::Rock) = 0
+score(::Paper, ::Scissors) = 6
+score(::Scissors, ::Paper) = 0
+score(::Scissors, ::Rock) = 6
 
 
 function score(line)
