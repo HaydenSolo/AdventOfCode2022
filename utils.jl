@@ -5,3 +5,5 @@ parsefloat(s::AbstractString) = parse(Float64, s)
 
 parseint(ss) = parseint.(ss)
 parsefloat(ss) = parsefloat.(ss)
+
+maketypes(types...) = foreach(t -> eval(:(struct $t end)), types)

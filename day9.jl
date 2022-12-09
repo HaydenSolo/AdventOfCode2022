@@ -5,10 +5,7 @@ struct Pos
     x::Int
     y::Int
 end
-struct R end
-struct L end
-struct U end
-struct D end
+maketypes(:R, :L, :U, :D)
 
 get_direction(direction::AbstractString) = Dict("R"=>R,"L"=>L,"U"=>U, "D"=>D)[direction]()
 
