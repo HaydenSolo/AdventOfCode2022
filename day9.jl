@@ -1,18 +1,22 @@
 include("utils.jl")
-
 lines = readinput()
 
 struct Pos
     x::Int
     y::Int
 end
+struct R end
+struct L end
+struct U end
+struct D end
 
-function moveto(start::Pos, direction::AbstractString)
-    direction == "R" && (return Pos(start.x+1, start.y))
-    direction == "L" && (return Pos(start.x-1, start.y))
-    direction == "U" && (return Pos(start.x, start.y+1))
-    direction == "D" && (return Pos(start.x, start.y-1))
-end
+get_direction(direction::AbstractString) = Dict("R"=>R,"L"=>L,"U"=>U, "D"=>D)[direction]()
+
+moveto(start::Pos, direction::AbstractString) = moveto(start, get_direction(direction))
+moveto(start::Pos, ::R) = Pos(start.x+1, start.y)
+moveto(start::Pos, ::L) = Pos(start.x-1, start.y)
+moveto(start::Pos, ::U) = Pos(start.x, start.y+1)
+moveto(start::Pos, ::D) = Pos(start.x, start.y-1)
 
 function follow(head::Pos, tail::Pos)
     abs(head.x - tail.x) <= 1 && abs(head.y - tail.y) <= 1 && (return tail)
@@ -28,15 +32,13 @@ function moveonlines(lines, knots)
     for line in lines
         dir, a = split(line)
         amount = parseint(a)
-        for i in 1:amount
+        for _ in 1:amount
             all[1] = moveto(all[1], dir)
-            for j in 2:knots
-                all[j] = follow(all[j-1], all[j])
-            end
+            foreach(j -> (all[j] = follow(all[j-1], all[j])), 2:knots)
             push!(visited, all[end])
         end
     end
-    return unique(visited)
+    unique(visited)
 end
 
 println(length(moveonlines(lines, 2)))
