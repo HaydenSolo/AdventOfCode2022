@@ -15,7 +15,6 @@ function moveto(start::Pos, direction::AbstractString)
 end
 
 function follow(head::Pos, tail::Pos)
-    head == tail && (return tail)
     abs(head.x - tail.x) <= 1 && abs(head.y - tail.y) <= 1 && (return tail)
     xmove = head.x == tail.x ? 0 : copysign(1, head.x - tail.x)
     ymove = head.y == tail.y ? 0 : copysign(1, head.y - tail.y)
