@@ -22,27 +22,7 @@ function follow(head::Pos, tail::Pos)
     Pos(tail.x + xmove, tail.y + ymove)
 end
 
-function moveonlines(lines)
-    start = Pos(1, 1)
-    visited = Pos[start]
-    head = start
-    tail = start
-    for line in lines
-        dir, a = split(line)
-        amount = parseint(a)
-        for i in 1:amount
-            head = moveto(head, dir)
-            tail = follow(head, tail)
-            push!(visited, tail)
-        end
-    end
-    return unique(visited)
-end
-
-println(length(moveonlines(lines)))
-
-
-function bigmoveonlines(lines, knots)
+function moveonlines(lines, knots)
     start = Pos(1, 1)
     visited = Pos[start]
     all = [start for _ in 1:knots]
@@ -60,4 +40,5 @@ function bigmoveonlines(lines, knots)
     return unique(visited)
 end
 
-println(length(bigmoveonlines(lines, 10)))
+println(length(moveonlines(lines, 2)))
+println(length(moveonlines(lines, 10)))
